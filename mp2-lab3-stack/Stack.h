@@ -68,7 +68,6 @@ public:
 		if (IsEmpty()) throw "Стек пустой";
 		return pMem[topId--];
 	}
-
 };
 
 #endif //STACK_H
