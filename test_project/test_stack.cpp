@@ -164,3 +164,16 @@ TEST(Stack, can_completely_fill_and_completely_clean) {
 	}
 	EXPECT_EQ(true, a.IsEmpty());
 }
+
+TEST(Stack, throw_when_pop_from_empty) {
+	Stack<int> a(5);
+	ASSERT_ANY_THROW(a.pop());
+}
+
+TEST(Stack, throws_when_push_to_full) {
+	Stack<int> a(5);
+	for (int i = 0; i < 5; i++) {
+		a.push(i);
+	}
+	ASSERT_ANY_THROW(a.push(100));
+}
