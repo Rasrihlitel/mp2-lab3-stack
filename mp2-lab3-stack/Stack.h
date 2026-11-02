@@ -19,7 +19,7 @@ public:
 		size = obj.size;
 		topId = obj.topId;
 		pMem = new T[size];
-		for (int i = 0; i < topId; i++) {
+		for (int i = 0; i <= topId; i++) {
 			pMem[i] = obj.pMem[i];
 		}
 	}
@@ -37,10 +37,10 @@ public:
 			if (size != obj.size) {
 				delete[] pMem;
 				size = obj.size;
-				topId = obj.topId;
 				pMem = new T[size];
 			}
-			for (int i = 0; i < topId; i++) {
+			topId = obj.topId;
+			for (int i = 0; i <= topId; i++) {
 				pMem[i] = obj.pMem[i];
 			}
 		}
@@ -58,6 +58,18 @@ public:
 		}
 		return *this;
 	}
+	bool operator==(const Stack<T>& obj) const {
+		if (size != obj.size || topId != obj.topId) return false;
+		for (int i = 0; i <= topId; i++) {
+			if (pMem[i] != obj.pMem[i]) return false;
+		}
+		return true;
+	}
+	bool operator!=(const Stack<T>& obj) const {
+		return !(*this == obj);
+	}
+	int getSize() { return size; }
+	int getTopId() { return topId; }
 	bool IsFull() { return topId == size - 1; }
 	bool IsEmpty() { return topId == -1; }
 	void push(const T& el) {
