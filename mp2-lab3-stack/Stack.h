@@ -72,6 +72,7 @@ public:
 	int getTopId() { return topId; }
 	bool IsFull() { return topId == size - 1; }
 	bool IsEmpty() { return topId == -1; }
+	void clear() { topId = -1; }
 	void push(const T& el) {
 		if (IsFull()) throw "Стек полный";
 		pMem[++topId] = el;
