@@ -26,7 +26,7 @@ TEST(Stack, can_get_topid) {
 	EXPECT_EQ(-1, a.getTopId());
 }
 
-TEST(Stack, can_create_copied_vector) {
+TEST(Stack, can_create_copied_stack) {
 	Stack<int> a(10);
 	ASSERT_NO_THROW(Stack<int> b(a));
 }
@@ -57,7 +57,7 @@ TEST(Stack, can_push_and_pop_element){
 	EXPECT_EQ(10, st.pop());
 }
 
-TEST(Stack, can_assign_vector_to_itself){
+TEST(Stack, can_assign_stack_to_itself){
 	Stack<int> a(5);
 	for (int i = 0; i < 5; i++) {
 		a.push(i);
@@ -78,7 +78,9 @@ TEST(Stack, can_assign_stack_with_equal_size) {
 		b.push(i);
 	}
 	a = b;
-	ASSERT_NO_THROW(a == b);
+	ASSERT_TRUE(a == b);
+	EXPECT_EQ(b.getSize(), a.getSize());
+	EXPECT_EQ(b.getTopId(), a.getTopId());
 }
 
 TEST(Stack, assign_operator_change_stack_size) {
@@ -103,7 +105,9 @@ TEST(Stack, can_assign_stack_of_different_size) {
 	for (int i = 0; i < 3; i++) {
 		b.push(i);
 	}
-	ASSERT_NO_THROW(b = a);
+	b = a;
+	EXPECT_EQ(5, b.getSize());
+	ASSERT_TRUE(a == b);
 }
 
 TEST(Stack, compare_equal_stack_return_true) {
