@@ -32,6 +32,7 @@ public:
 		obj.pMem = nullptr;
 	}
 	~Container() { if (pMem != nullptr) delete[] pMem; }
+	int getSize() const { return size; }
 	Container<T>& operator=(const Container<T>& obj) {
 		if (this != &obj) {
 			if (capacity != obj.capacity) {
@@ -65,6 +66,14 @@ public:
 		}
 		return true;
 	}
+	T& operator[](const int& i) {
+		if (i < 0 || i >= size) throw "Индекс не входит в массив";
+		return pMem[i];
+	}
+	const T& operator[](const int& i) const {
+		if (i < 0 || i >= size) throw "Индекс не входит в массив";
+		return pMem[i];
+	}
 	bool operator!=(const Container<T>& obj) const { return !(*this == obj); }
 	void push_back(const T& val) {
 		if (size == capacity) {
@@ -81,7 +90,7 @@ public:
 	}
 	void clear() {
 		delete[] pMem;
-		pMem = new T[capacity];
+		pMem = (capacity > 0) ? new T[capacity] : nullptr;
 		size = 0;
 	}
 };

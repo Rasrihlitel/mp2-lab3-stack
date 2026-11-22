@@ -28,7 +28,7 @@ public:
 		topId = obj.topId;
 		pMem = obj.pMem;
 		obj.size = 0;
-		obj.topId = 0;
+		obj.topId = -1;
 		obj.pMem = nullptr;
 	}
 	~Stack() { delete[] pMem; }
@@ -53,7 +53,7 @@ public:
 			topId = obj.topId;
 			pMem = obj.pMem;
 			obj.size = 0;
-			obj.topId = 0;
+			obj.topId = -1;
 			obj.pMem = nullptr;
 		}
 		return *this;
@@ -80,6 +80,10 @@ public:
 	T pop() {
 		if (IsEmpty()) throw "Стек пустой";
 		return pMem[topId--];
+	}
+	T top() {
+		if (IsEmpty()) throw "Стек пустой";
+		return pMem[topId];
 	}
 };
 

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "Stack.h"
+#include "Calculator.h"
 
 int main() {
     std::setlocale(LC_CTYPE, "Russia");
@@ -42,6 +43,12 @@ int main() {
 
     Stack<int> c = std::move(a);
     std::cout << "moved top = " << c.pop() << "\n";  // 20
+
+    Calculator calc;
+    calc.setInfix("(1+2)*3^2-4/2");
+    calc.infixToCont();
+    calc.toPostFix();
+    std::cout << "result = " << calc.calcPostFix() << "\n";
 
     try {
         Stack<int> full(1);

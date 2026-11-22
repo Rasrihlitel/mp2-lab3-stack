@@ -4,16 +4,17 @@
 #include <string>
 
 enum TokenType {
-	Number,
 	Operation,
+	Number,
 	OpenBr,
 	CloseBr
 };
 
 struct Token {
 	TokenType type;
-	std::string str;
 	double val;
+	int prior;
+	std::string str;
 };
 
 #endif //TOKEN_H
