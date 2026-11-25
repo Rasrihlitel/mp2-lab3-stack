@@ -136,6 +136,46 @@ public:
 		}
 		return num.pop();
 	}
+
+	double calculate() {
+		oper.clear();
+		num.clear();
+		for (int i = 0; i < infixContainer.getSize(); i++) {
+			if (infixContainer[i].type == OpenBr) {
+				oper.push(infixContainer[i]);
+			}
+			else if (infixContainer[i].type == Number) {
+				num.push(infixContainer[i].val);
+			}
+			else if (infixContainer[i].type == CloseBr) {
+				while (oper.top().type != OpenBr) {
+					double right = num.pop();
+					double left = num.pop();
+					Token c = oper.pop();
+					double res = 0;
+					if (c.str == "+") res = left + right;
+					if (c.str == "-") res = left - right;
+					if (c.str == "*") res = left * right;
+					if (c.str == "/") res = left / right;
+					if (c.str == "^") res = pow(left, right);
+					num.push(res);
+				}
+				oper.pop();
+			}
+			else if (infixContainer[i].type == Operation) {
+				Stack<Token> temp;
+				while (infixContainer[i].prior <= oper.top().prior) {
+					temp.push(oper.pop());
+				}
+				oper.push(infixContainer[i]);
+				while (!temp.IsEmpty()) {
+					oper.push(temp.pop());
+				}
+			}
+		}
+		return num.pop();
+	}
+
 };
 
 #endif //CALCULATOR_H

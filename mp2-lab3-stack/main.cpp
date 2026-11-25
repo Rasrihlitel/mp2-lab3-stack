@@ -28,21 +28,21 @@ int main() {
     s.push(2);
     s.push(3);
 
-    std::cout << "top = " << s.pop() << "\n";   // 3
-    std::cout << "top = " << s.pop() << "\n";   // 2
-    std::cout << "empty? " << s.IsEmpty() << "\n"; // 0
+    std::cout << "top = " << s.pop() << "\n";  
+    std::cout << "top = " << s.pop() << "\n";  
+    std::cout << "empty? " << s.IsEmpty() << "\n";
 
     s.clear();
-    std::cout << "after clear empty? " << s.IsEmpty() << "\n"; // 1
+    std::cout << "after clear empty? " << s.IsEmpty() << "\n";
 
     Stack<int> a(2);
     a.push(10);
     a.push(20);
     Stack<int> b = a;
-    std::cout << "copy equal? " << (a == b) << "\n"; // 1
+    std::cout << "copy equal? " << (a == b) << "\n";
 
     Stack<int> c = std::move(a);
-    std::cout << "moved top = " << c.pop() << "\n";  // 20
+    std::cout << "moved top = " << c.pop() << "\n";
 
     Calculator calc;
     calc.setInfix("(1+2)*3^2-4/2");

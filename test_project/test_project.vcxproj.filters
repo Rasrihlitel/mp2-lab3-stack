@@ -29,5 +29,8 @@
     <ClCompile Include="gtest-all.cc">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="test_calculator.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
